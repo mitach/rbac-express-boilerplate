@@ -1,0 +1,1 @@
+* fix the status codes for different errors (now it is 500 in all cases)
