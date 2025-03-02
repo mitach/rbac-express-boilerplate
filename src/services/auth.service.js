@@ -29,7 +29,7 @@ export const login = async ({ email, password }) => {
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    // Update lastLogin on successful login
+    // Update lastLogin in db on successful login
     user.lastLogin = Date.now();
     await user.save();
 

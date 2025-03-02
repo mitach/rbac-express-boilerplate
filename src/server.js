@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 
 import connectToDatabase from './configs/db.config.js';
 import routes from './routes/routes.js';
@@ -10,6 +12,8 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
+app.use(helmet());
 
 // Routes
 app.use('/api/v1', routes);
