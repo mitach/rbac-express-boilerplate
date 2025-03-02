@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 
 import connectToDatabase from './configs/db.config.js';
+import { generalLimiter } from './middlewares/rateLimiter.middleware.js';
 import routes from './routes/routes.js';
 
 dotenv.config();
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
+app.use(generalLimiter);
 
 // Routes
 app.use('/api/v1', routes);
