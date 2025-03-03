@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import connectToDatabase from './configs/db.config.js';
 import { generalLimiter } from './middlewares/rateLimiter.middleware.js';
@@ -12,6 +13,12 @@ dotenv.config();
 const app = express();
 
 // Middlewares
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
