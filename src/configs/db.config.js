@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const connectToDatabase = async () => {
-    if (!process.env.MONGODB_URI) {
-        throw new Error('Please define the MONGODB_URI environment variable insile .env file');
+    if (!process.env.DATABASE_URL) {
+        throw new Error('Please define the DATABASE_URL environment variable insile .env file');
     }
 
     try {
-        const connect = await mongoose.connect(process.env.MONGODB_URI);
+        const connect = await mongoose.connect(process.env.DATABASE_URL);
         
         console.log(`Database connected: ${connect.connection.host}, ${connect.connection.name}`);
     } catch (error) {
